@@ -1,0 +1,59 @@
+<button id="back-to-top-button">Back To Top </button>
+
+<style>
+
+html {
+    scroll-behavior: smooth;
+}
+
+#back-to-top-button {
+    scroll-behavior: smooth;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    padding: 15px;
+    cursor: pointer;
+    background: red;
+    color: white;
+}
+
+
+
+
+<script>  
+    
+var backToTopFunction = function() {
+		var backToTopButton = document.getElementById("back-to-top-button");
+        backToTopButton.addEventListener("click", backToTop);
+  
+		window.onscroll = function() {
+			scrollFunction()
+		};
+
+		function scrollFunction() {
+			if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				backToTopButton.style.display = "block";
+			} else {
+				backToTopButton.style.display = "none";
+			}
+		}
+
+		function backToTop() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+	}
+
+//  reload JS on section update 
+document.addEventListener("shopify:section:load", function(event) {
+	backToTopFunction();
+});
+  
+// load JS on page load
+backToTopFunction();
+  
+</script>
